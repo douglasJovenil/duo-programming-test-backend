@@ -7,7 +7,7 @@
     "prod": "node dist/main.js",
     "build": "tsc",
     "typeorm": "node node_modules/typeorm/cli",
-    "migrate": "node node node_modules/typeorm/cli migration:run",
+    "migrate": "node node_modules/typeorm/cli migration:run",
     "seed:questions": "node dist/database/seed/questions"
   },
   "devDependencies": {
