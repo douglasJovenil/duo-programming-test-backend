@@ -1,11 +1,124 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "DUO Programming Test Application Documentation",
-        "description": "This is an API Rent",
+        "title": "API REST Teste Técnico de Desenvolvimento",
+        "description": "[ Base URL: https://duo-programming-test.herokuapp.com ]",
         "version": "1.0.0",
         "contact": {
             "email": "edfepn@outlook.com"
+        }
+    },
+    "paths": {
+        "/faq": {
+            "get": {
+                "tags": ["FAQ"],
+                "summary": "Listar dúvidas frequentes",
+                "responses": {
+                    "200": {
+                        "description": "Listagem feita com sucesso"
+                    }
+                }
+            },
+            "post": {
+                "tags": ["FAQ"],
+                "summary": "Cadastrar dúvida",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "title": "Title example",
+                                    "description": "Description example"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Dúvida salva com sucesso"
+                    },
+                    "400": {
+                        "description": "Já existe uma dúvida com o título informado"
+                    },
+                    "500": {
+                        "description": "Title ou Description não foram informados no corpo da requisição"
+                    }
+                }
+            },
+            "put": {
+                "tags": ["FAQ"],
+                "summary": "Editar dúvida",
+                "description": "Para editar a descrição de uma dúvida, é necessário informar o id dela. Este pode ser obtido pelo método GET do endpoint",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    },
+                                    "newDescription": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "id": 1,
+                                    "newDescription": "Dúvida editada"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Dúvida editada com sucesso"
+                    },
+                    "400": {
+                        "description": "Não existe dúvida com o id informado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["FAQ"],
+                "summary": "Deletar dúvida",
+                "description": "Para excluir a descrição de uma dúvida, é necessário informar o id dela. Este pode ser obtido pelo método GET do endpoint",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "example": {
+                                    "id": 5
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Exclusão feita com sucesso!"
+                    },
+                    "400": {
+                        "description": "Não existe dúvida com o id informado"
+                    }
+                }
+            }
         }
     }
 }
